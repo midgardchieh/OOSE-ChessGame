@@ -93,8 +93,56 @@ public class MakeChessManual extends JPanel implements ActionListener {
 	public LinkedList getManual() {
 		return Manual;
 	}
-
+	//悔棋
 	public void actionPerformed(ActionEvent e) {
-		
+		int position = text.getText().lastIndexOf("#");
+		if (position != -1)
+			text.replaceRange("", position, text.getText().length());
+		//移動
+		if (Manual.size() > 0) {
+			MoveStep lastStep = (MoveStep) Manual.getLast();
+			Manual.removeLast();
+			Object qizi = dieChess.getLast();
+			dieChess.removeLast();
+			String temp = qizi.toString();
+			if (temp.equals("nodie")) {
+				int startI = lastStep.pStart.x;
+				int startJ = lastStep.pStart.y;
+				int endI = lastStep.pEnd.x;
+				int endJ = lastStep.pEnd.y;
+				ChessPiece piece = point[endI][endJ].getPiece();
+
+				point[startI][startJ].setPiece(piece, board);
+				(point[endI][endJ]).sethaveChess(false);
+
+				if (piece.Chesstype().equals(board.redcolor)) {
+					board.redmove = true;
+					board.blackmove = false;
+				}
+				if (piece.Chesstype().equals(board.blackcolor)) {
+					board.blackmove = true;
+					board.redmove = false;
+				}
+			} else { //吃子
+				ChessPiece removedPiece = (ChessPiece) qizi;
+				int startI = lastStep.pStart.x;
+				int startJ = lastStep.pStart.y;
+				int endI = lastStep.pEnd.x;
+				int endJ = lastStep.pEnd.y;
+				ChessPiece piece = point[endI][endJ].getPiece();
+				point[startI][startJ].setPiece(piece, board);
+				point[endI][endJ].setPiece(removedPiece, board);
+				(point[endI][endJ]).sethaveChess(true);
+
+				if (piece.Chesstype().equals(board.redcolor)) {
+					board.redmove = true;
+					board.blackmove = false;
+				}
+				if (piece.Chesstype().equals(board.blackcolor)) {
+					board.blackmove = true;
+					board.redmove = false;
+				}
+			}
+		}
 	}
 }
