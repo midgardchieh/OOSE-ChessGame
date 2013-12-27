@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.LinkedList;
 
 /**
- * 象棋主類別
+ * 象棋主類別 
  */
 public class ChineseChess extends JFrame implements ActionListener {
 	ChessBoard board = null;
@@ -20,7 +20,8 @@ public class ChineseChess extends JFrame implements ActionListener {
 	public ChineseChess() {
 		setTitle("中國象棋");
 		board = new ChessBoard(45, 45, 9, 10);
-
+		
+		record = board.record;
 		con = getContentPane();
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true,
 				board, record);
@@ -33,7 +34,7 @@ public class ChineseChess extends JFrame implements ActionListener {
 			}
 		});
 		setVisible(true);
-		setBounds(60, 20, 540, 540);
+		setBounds(60, 20, 690, 540);
 		fileChooser = new JFileChooser();
 		con.validate();
 		validate();

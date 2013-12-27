@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/** 
+/**
  * 棋盤 
  */
 public class ChessBoard extends JPanel implements MouseListener,
@@ -26,6 +26,7 @@ public class ChessBoard extends JPanel implements MouseListener,
 	int startI, startJ;
 	public boolean redmove = true, blackmove = false;
 	Rule rule = null;
+	public MakeChessManual record = null;
 
 	public ChessBoard(int w, int h, int r, int c) {
 		setLayout(null);
@@ -47,6 +48,7 @@ public class ChessBoard extends JPanel implements MouseListener,
 		}
 
 		rule = new Rule(this, point);
+		record = new MakeChessManual(this, point);
 
 		img = Toolkit.getDefaultToolkit().getImage("board.jpg");
 		pieceImg = Toolkit.getDefaultToolkit().getImage("piece.gif");
@@ -303,6 +305,8 @@ public class ChessBoard extends JPanel implements MouseListener,
 							point[m][n].reMovePiece(pieceRemoved, this);
 							point[m][n].setPiece(piece, this);
 							(point[startI][startJ]).sethaveChess(false);
+							record.recordChessboard(piece, startI, startJ, m, n);
+							record.recorddieChess(pieceRemoved);
 							rule.isWine(pieceRemoved);
 							if (piece.Chesstype().equals(redcolor)) {
 								redmove = false;
@@ -327,6 +331,8 @@ public class ChessBoard extends JPanel implements MouseListener,
 					if (ok) {
 						point[m][n].setPiece(piece, this);
 						(point[startI][startJ]).sethaveChess(false);
+						record.recordChessboard(piece, startI, startJ, m, n);
+						record.recorddieChess("nodie");
 
 						if (piece.Chesstype().equals(redcolor)) {
 							redmove = false;

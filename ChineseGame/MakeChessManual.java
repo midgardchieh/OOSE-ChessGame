@@ -70,11 +70,31 @@ public class MakeChessManual extends JPanel implements ActionListener {
 		return c;
 	}
 
+	public void recordChessboard(ChessPiece piece, int startI, int startJ, int endI,
+			int endJ) {
+		Point pStart = new Point(startI, startJ);
+		Point pEnd = new Point(endI, endJ);
+		MoveStep step = new MoveStep(pStart, pEnd);
+		Manual.add(step);
+
+		String Chesstype = piece.Chesstype();
+		String name = piece.getName();
+		String m = "#" + Chesstype + name + ": " + startI + numberToLetter(startJ)
+				+ " 到 " + endI + numberToLetter(endJ);
+		text.append(m);
+		if (piece.Chesstype().equals(board.blackcolor))
+			text.append("\n");
+	}
+
+	public void recorddieChess(Object object) {
+		dieChess.add(object);
+	}
+
 	public LinkedList getManual() {
 		return Manual;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-
+		
 	}
 }
