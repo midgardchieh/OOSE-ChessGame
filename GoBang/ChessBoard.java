@@ -19,7 +19,7 @@ import java.awt.Color;
 	 * 五子棋棋盤
 	 */
 	
-	public class ChessBoard extends JPanel implements MouseListener {
+	public class ChessBoard extends BWCGame implements MouseListener {
 	   public static final int MARGIN = 30;//邊距
 	   public static final int GRID_SPAN = 35;//網格間距
 	   public static final int ROWS = 15;//棋盤行數
@@ -158,11 +158,11 @@ import java.awt.Color;
 	       isBlack =! isBlack;
 	     }
 	   //覆蓋mouseListener的方法
-	   public void mouseClicked(MouseEvent e){}
+	  /* public void mouseClicked(MouseEvent e){}
 	   
 	   public void mouseEntered(MouseEvent e){}
 	   public void mouseExited(MouseEvent e){}
-	   public void mouseReleased(MouseEvent e){}
+	   public void mouseReleased(MouseEvent e){}*/
 
 	   //找x，y的地方是否有棋子存在
 	   private boolean findChess(int x, int y){
