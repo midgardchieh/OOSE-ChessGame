@@ -3,7 +3,7 @@ package ChineseChess;
 import java.awt.Point;
 
 /**
- * ²¾°Ê
+ * ç§»å‹•
  */
 public class MoveStep implements java.io.Serializable {
 	public Point pStart, pEnd;
