@@ -288,6 +288,20 @@ import java.awt.Color;
 	       repaint();
 	   }
 	   
+	   //悔棋
+	   public void goback(){
+	       if(chessCount==0)
+	           return ;
+	       chessList[chessCount-1]=null;
+	       chessCount--;
+	       if(chessCount>0){
+	           xIndex=chessList[chessCount-1].getX();
+	           yIndex=chessList[chessCount-1].getY();
+	       }
+	       isBlack=!isBlack;
+	       repaint();
+	   }
+	   
 	   //矩形Dimension
 	
 	   public Dimension getPreferredSize(){

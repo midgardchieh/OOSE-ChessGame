@@ -81,8 +81,11 @@ import javax.swing.*;
 	              System.out.println("重新開始");
 	              chessBoard.restartGame();
 	          }
-	          else if (obj==exitMenuItem||obj==exitButton){
+	          else if (obj==exitMenuItem||obj==exitButton)
 	              System.exit(0);
+	          else if (obj==backMenuItem||obj==backButton){
+	              System.out.println("悔棋...");
+	              chessBoard.goback();
 	          }
 	      }
 	  }
